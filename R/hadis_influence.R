@@ -1,4 +1,3 @@
-# R/hadis_influence.R
 #' Custom Hadi's Influence Measure
 #'
 #' This function calculates Hadi's Influence Measure for each observation in a linear model.
@@ -32,8 +31,13 @@ hadis_influence_measure <- function(model) {
   # Mean Squared Error (MSE) of the residuals
   mse <- sum(e^2) / df.residual(model)
 
+  # Calculate the total sum of squared residuals
+  # eTe <- sum(e^2)
+
+  eTe <- diag(t(e) %*% e)
+
   # Calculate the first term of Hadi's Influence Measure
-  first_term <- ((p + 1) * e^2) / ((1 - h) * ((mse * (n - p - 1)) - e^2))
+  first_term <- ((p + 1) * e^2) / ((1 - h) * (eTe - e^2))
 
   # Calculate the second term of Hadi's Influence Measure
   second_term <- h / (1 - h)
@@ -43,27 +47,29 @@ hadis_influence_measure <- function(model) {
 
   return(hadi_influence)
 }
-#
-# # Example usage:
-# # Load the mtcars dataset
-# data(mtcars)
-#
-# # Fit a linear model
-# model <- lm(mpg ~ wt + hp, data = mtcars)
-#
-# # Calculate Hadi's Influence Measure using the custom function
-# hadi_influence_values <- custom_hadis_influence_measure(model)
-#
-# # Print the Hadi's Influence Measure values
-# print(hadi_influence_values)
-#
-# # Calculate Hadi's Influence Measure using the custom function
-# builtin_hadi_influence_values <- ols_hadi(model)
-#
-# # Print the Hadi's Influence Measure values
-# print(builtin_hadi_influence_values)
-#
-#
+
+
+
+# Example usage:
+# Load the mtcars dataset
+data(mtcars)
+
+# Fit a linear model
+model <- lm(mpg ~ wt + hp, data = mtcars)
+
+# Calculate Hadi's Influence Measure using the custom function
+hadi_influence_values <- hadis_influence_measure(model)
+
+# Print the Hadi's Influence Measure values
+print(hadi_influence_values)
+
+# Calculate Hadi's Influence Measure using the custom function
+builtin_hadi_influence_values <- ols_hadi(model)
+
+# Print the Hadi's Influence Measure values
+print(builtin_hadi_influence_values)
+
+
 # # Custom Hadi's Influence Measure function (from previous example)
 # custom_hadis_influence_measure <- function(model) {
 #   if (!inherits(model, "lm")) stop("Model must be an object of class 'lm'.")

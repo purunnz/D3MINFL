@@ -3,6 +3,7 @@
 #'
 #' This function calculates Cook's Distance for a linear model object without using the built-in cooks.distance function.
 #'
+#'
 #' @param model A linear model object of class 'lm'.
 #' @return A numeric vector of Cook's Distance values for each observation in the model.
 #' @examples
