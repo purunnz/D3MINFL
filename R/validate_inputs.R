@@ -1,7 +1,4 @@
 #' Validate Inputs for Influence Measure Calculations
-#' @importFrom stats cooks.distance formula model.frame model.matrix model.response residuals
-### @importFrom stats coef cooks.distance df.residual dffits formula hatvalues model.frame model.matrix model.response residuals rstudent
-#' @importFrom graphics legend lines
 #'
 #' This function validates the inputs for calculating influence measures on a linear model.
 #' It checks if the provided model is of class 'lm', and ensures that the data does not contain
@@ -12,7 +9,7 @@
 #'
 #' @return NULL. This function is used for its side effect of stopping execution if inputs are invalid.
 #' @export
-#'
+#' @importFrom stats formula
 #' @examples
 #' model <- lm(mpg ~ wt + hp, data = mtcars)
 #' validate_inputs(mtcars, model)

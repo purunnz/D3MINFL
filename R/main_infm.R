@@ -46,3 +46,4 @@ calculate_influence_measures <- function(data, model, measure = "cooks") {
 
   return(influence_values)
 }
+

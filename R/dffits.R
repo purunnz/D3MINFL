@@ -5,6 +5,7 @@
 #'
 #' @param model A linear model object of class 'lm'.
 #' @return A numeric vector of DFFITS values for each observation in the model.
+#' @importFrom stats coef df.residual rstudent model.matrix model.response model.frame residuals
 #' @examples
 #' model <- lm(mpg ~ wt + hp, data = mtcars)
 #' dffits_values <- dffits_measure(model)
@@ -37,26 +38,3 @@ dffits_measure <- function(model) {
 
   return(dffits_values)
 }
-#
-# # Example usage:
-# # Load the mtcars dataset
-# data(mtcars)
-#
-# # Fit a linear model
-# model <- lm(mpg ~ wt + hp, data = mtcars)
-#
-# # Calculate DFFITS using the custom function
-# custom_dffits_values <- custom_dffits_measure(model)
-#
-# # Print the DFFITS values
-# print(custom_dffits_values)
-#
-# # Calculate DFFITS using the custom function
-# builtin_dffits_values <- dffits_measure(model)
-#
-# # Print the DFFITS values
-# print(builtin_dffits_values)
-#
-#
-#
-#

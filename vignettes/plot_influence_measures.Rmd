@@ -1,8 +1,8 @@
 ---
-title: "calculate_influence_measures"
+title: "plot_influence_measures"
 output: rmarkdown::html_vignette
 vignette: >
-  %\VignetteIndexEntry{calculate_influence_measures}
+  %\VignetteIndexEntry{plot_influence_measures}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---
@@ -29,21 +29,10 @@ library(D3MINFL)
 # Fit a linear model
 model <- lm(mpg ~ wt + hp, data = mtcars)
 summary(model)
+```
 
-# Calculate Cook's Distance
-cooksD <- cooks_distance(model)
-print(cooksD)
-
-# Calculate DFFITS
-dffits_values <- dffits_measure(model)
-print(dffits_values)
-
-# Calculate Hadi's Influence Measure
-hadi_influence_values <- hadis_influence_measure(model)
-print(hadi_influence_values)
-
+```{r}
 # Plot Influence Measures
 plot_influence_measures(mtcars, model)
-
 ```
 
