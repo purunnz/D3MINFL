@@ -10,6 +10,12 @@
 #'
 #' @return A plot object displaying the selected influence measures.
 #' @export
+#' @examples
+#' model <- lm(mpg ~ wt + hp, data = mtcars)
+#' influence_values <- plot_influence_measures(mtcars, model, measure = "cooks")
+#' plot_influence_measures(mtcars, model, measures = c("cooks", "dffits", "hadi"))
+#' plot_influence_measures(mtcars, model, measures = "cooks")
+
 plot_influence_measures <- function(data, model, measures = c("cooks", "dffits", "hadi")) {
 
   # Ensure measures is a vector

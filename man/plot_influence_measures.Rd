@@ -21,3 +21,9 @@ A plot object displaying the selected influence measures.
 This function plots the selected influence measures for a given linear model.
 It combines Cook's Distance, DFFITS, and Hadi's Influence Measure in one plot.
 }
+\examples{
+model <- lm(mpg ~ wt + hp, data = mtcars)
+influence_values <- plot_influence_measures(mtcars, model, measure = "cooks")
+plot_influence_measures(mtcars, model, measures = c("cooks", "dffits", "hadi"))
+plot_influence_measures(mtcars, model, measures = "cooks")
+}
