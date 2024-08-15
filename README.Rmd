@@ -18,11 +18,14 @@ knitr::opts_chunk$set(
 <!-- badges: start -->
 <!-- badges: end -->
 
-The goal of D3MINFL is to ...
+This package provides tools for performing diagnostic analysis
+    on linear regression models. It includes functions to compute and plot 
+    various influence measures such as Cook's Distance, DFFITS, and Hadi's 
+    Influence Measure.
 
 ## Installation
 
-You can install the development version of D3MINFL from [GitHub](https://github.com/) with:
+You can install the development version of D3MINFL from [GitHub](https://github.com/purunnz/D3MINFL) with:
 
 ``` r
 # install.packages("devtools")
@@ -38,18 +41,21 @@ library(D3MINFL)
 ## basic example code
 ```
 
-What is special about using `README.Rmd` instead of just `README.md`? You can include R chunks like so:
+This function calculates influence measures for a given linear model. The user can select which measure to calculate: Cook's Distance, DFFITS, or Hadi's Influence Measure.:
 
-```{r cars}
-summary(cars)
+```{r calculate_influence_measures}
+model <- lm(mpg ~ wt + hp, data = mtcars)
+influence_values <- calculate_influence_measures(mtcars, model, measure = "cooks")
+print(influence_values)
 ```
 
-You'll still need to render `README.Rmd` regularly, to keep `README.md` up-to-date. `devtools::build_readme()` is handy for this.
-
-You can also embed plots, for example:
+This function plots the selected influence measures for a given linear model. It combines Cook's Distance, DFFITS, and Hadi's Influence Measure in one plot.:
 
 ```{r pressure, echo = FALSE}
-plot(pressure)
+model <- lm(mpg ~ wt + hp, data = mtcars)
+influence_values <- plot_influence_measures(mtcars, model, measure = "cooks")
+plot_influence_measures(mtcars, model, measures = c("cooks", "dffits", "hadi"))
+plot_influence_measures(mtcars, model, measures = "cooks")
 ```
 
-In that case, don't forget to commit and push the resulting figure files, so they display on GitHub and CRAN.
+
