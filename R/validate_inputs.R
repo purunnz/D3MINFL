@@ -1,5 +1,6 @@
 #' Validate Inputs for Influence Measure Calculations
-#' @importFrom stats coef cooks.distance df.residual dffits formula hatvalues model.frame model.matrix model.response residuals rstudent
+#' @importFrom stats cooks.distance formula model.frame model.matrix model.response residuals
+### @importFrom stats coef cooks.distance df.residual dffits formula hatvalues model.frame model.matrix model.response residuals rstudent
 #' @importFrom graphics legend lines
 #'
 #' This function validates the inputs for calculating influence measures on a linear model.
